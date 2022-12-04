@@ -19,7 +19,7 @@
             <span class=" p-fluid">
               <Password
                 id="password"
-                v-model="user.passpord"
+                v-model="user.password"
                 toggleMask
                 :feedback="false"
                 placeholder="Parol"
@@ -38,7 +38,7 @@
           </div>
           <div class="col-12">
             <Button
-              @click="auth"
+              @click="loginUSer"
               label="Kirish"
               :loading="loader"
               class="w-full"
@@ -61,21 +61,29 @@
     </div>
   </template>
   <script>
+  import auth from '@/services/service/auth';
   export default {
     data() {
       return {
         loader: false,
         user: {
           login: null,
-          passpord: null,
-          isRemember: false,
+          password: null,
+        //   isRemember: false,
+        device_id:'device_id',
+        firebase_key:'web'
         },
       };
     },
+
     methods: {
-      auth() {
-          console.log(this.user);
-        this.loader = true;
+      loginUSer() {
+          auth.loginUser({data:this.user}).then((res) =>{
+            console.log(res.data);
+          }).catch((error)=>{
+            console.log(error);
+          })
+        // this.loader = true;
       },
     },
     created() {},
