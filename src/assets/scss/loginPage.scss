@@ -5,6 +5,7 @@
     justify-content: center;
     align-items: center;
     background-image: url('../img/hero-bg.png');
+    position: relative !important;
 }
 .cs_card_content {
     width: 100%;
@@ -25,3 +26,37 @@
     height: 80px !important;
     border-radius: 50%;
 }
+.flag__icon{
+    width: 30px;
+    height: 30px;
+    background-size: 26px;
+}
+.call_operator_btn{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid #883cae;
+    padding: 5px;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    cursor: pointer;
+    animation: pulse 2s ease-out infinite;
+}
+.video_guide_btn{
+    width: 100%;
+    padding: 5px;
+    position: absolute;
+    bottom: 50px;
+    cursor: pointer;
+}
+.call_operator_img  {
+    width: 100%;
+    height: 100%;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0px rgb(107, 5, 97),0 0 0 0px rgba(126, 5, 101, 0.85);  }
+    50% { transform: scale(0.95); }
+    100% { box-shadow: 0 0 0 15px rgba(0,210,255,0),0 0 0 30px rgba(0,210,255,0); }
+  }

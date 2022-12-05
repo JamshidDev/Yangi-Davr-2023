@@ -53,7 +53,7 @@
                 text-sm text-left
                 block
               "
-              >Haliyam sizda hisob yo'qmi?</router-link
+              >Ro'yhatdan o'tish</router-link
             >
           </div>
         </div>
@@ -70,7 +70,7 @@
           login: null,
           password: null,
         //   isRemember: false,
-        device_id:'device_id',
+        device_id:'dg',
         firebase_key:'web'
         },
       };

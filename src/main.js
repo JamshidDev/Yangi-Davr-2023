@@ -10,6 +10,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import PrimeVue from 'primevue/config';
+import Maska from 'maska'
 
 
 import Dialog from 'primevue/dialog';
@@ -69,6 +70,8 @@ import TabView from 'primevue/tabview';
 import TabPanel from 'primevue/tabpanel';
 import Rating from 'primevue/rating';
 import ProgressBar from 'primevue/progressbar';
+import InputMask from 'primevue/inputmask';
+
 
 
 
@@ -79,12 +82,14 @@ app.use(PrimeVue, { ripple: true, inputStyle: 'outlined' })
 app.use(ToastService);
 app.use(store)
 app.use(router)
+app.use(Maska)
 
 
 // app.directive('ripple', Ripple);
 // app.directive('code', CodeHighlight);
 app.directive('Badge', BadgeDirective);
 app.directive('tooltip', Tooltip);
+
 // app.directive('styleclass', StyleClass);
 
 app.component('Dialog', Dialog);
@@ -146,6 +151,8 @@ app.component("TabPanel", TabPanel);
 app.component("TabMenu", TabMenu);
 app.component("Rating", Rating);
 app.component("ProgressBar", ProgressBar);
+app.component("InputMask", InputMask);
+
 
 
 
