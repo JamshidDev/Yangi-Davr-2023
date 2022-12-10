@@ -1,0 +1,18 @@
+
+.layout{
+    width: 100% !important;
+    min-height: 100vh !important;
+    background-color: #ffffff !important;
+}
+.layout_main{
+    min-height: calc(100vh - 50px);
+}
+
+.cs_container{
+    max-width: 1320px !important;
+    width: 100%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 0px 10px;
+}

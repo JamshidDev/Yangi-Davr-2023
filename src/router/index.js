@@ -4,7 +4,17 @@ const routes = [
   {
     path: '/',
     name: 'home',
-    component: () => import('../Layouts/LayoutPage.vue')
+    component: () => import('../Layouts/LayoutPage.vue'),
+    children:[
+      {
+        path: '/home',
+        name: 'home',
+        component: function () {
+          return import(/* webpackChunkName: "about" */ '../views/Home/HomePage.vue')
+        }
+      }
+    ]
+
   },
   {
     path: '/login',

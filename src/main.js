@@ -71,6 +71,7 @@ import TabPanel from 'primevue/tabpanel';
 import Rating from 'primevue/rating';
 import ProgressBar from 'primevue/progressbar';
 import InputMask from 'primevue/inputmask';
+import RadioButton from 'primevue/radiobutton';
 
 
 
@@ -152,6 +153,8 @@ app.component("TabMenu", TabMenu);
 app.component("Rating", Rating);
 app.component("ProgressBar", ProgressBar);
 app.component("InputMask", InputMask);
+app.component("RadioButton", RadioButton);
+
 
 
 
