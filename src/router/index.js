@@ -3,8 +3,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'main',
     component: () => import('../Layouts/LayoutPage.vue'),
+    redirect:"/home",
     children:[
       {
         path: '/home',
