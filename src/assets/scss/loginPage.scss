@@ -11,23 +11,25 @@
 .cs_card_content {
     width: 100%;
     max-width: 500px !important;
-    padding: 20px 30px !important;
+    background-color: transparent;
 }
 
 .header_icon {
-    width: 40px;
-    height: 40px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #883cae;
 
 }
 
 .logo_img {
-    width: 80px !important;
-    height: 80px !important;
+    width: 100px !important;
+    height: 100px !important;
     border-radius: 50%;
+    object-fit: cover !important;
 }
 
 .flag__icon {

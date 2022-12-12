@@ -1,6 +1,24 @@
 <template>
   <router-view/>
+  <Toast position="bottom-right" group="br" />
+  <button @click="showBottomRight" >open</button>
 </template>
+
+<script>
+export default
+ {
+  data(){
+    return{
+
+    }
+  },
+  methods:{
+    showBottomRight(typeToast="error", title = 'Test title', content='Test text', group='br', time='3000') {
+            this.$toast.add({severity:'error' , summary:title, detail:content, group:group, life: time});
+        },
+  }
+}
+</script>
 
 <style lang="scss">
 @import url("./assets/scss/index.scss");

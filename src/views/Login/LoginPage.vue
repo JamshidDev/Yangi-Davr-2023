@@ -1,31 +1,43 @@
 <template>
     <div class="login_page">
-      <div class="cs_card_content lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1">
-        <div class="grid">
-          <div class="col-12 flex justify-content-center">
+      <div class="cs_card_content">
+        <div class="col-12 flex justify-content-center mb-2">
             <div class="header_icon">
               <img class="logo_img" src="../../assets/img/logo_rd.png" alt="">
             </div>
           </div>
-          <div class="col-12">
-            <h4 class="text-primary my-1">Tizimga kirish</h4>
+        <div class="grid px-4 lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1 bg-white">
+          
+          <div class="col-12 pt-4">
+            <h4 class="text-primary my-1">TIZIMGA KIRISH</h4>
           </div>
+
           <div class="col-12">
-            <span class=" p-fluid">
-              <InputText id="login" type="text" v-model="user.login" placeholder="Login" />
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">
+              <i class="pi pi-user"></i>
             </span>
+            <InputText
+              placeholder="@Username"
+              type="email"
+              v-model="user.login"
+            />
           </div>
+        </div>
+
           <div class="col-12">
-            <span class=" p-fluid">
-              <Password
-                id="password"
-                v-model="user.password"
-                toggleMask
-                :feedback="false"
-                placeholder="Parol"
-              ></Password>
-            </span>
+                <div class="p-inputgroup">
+                    <span class="p-inputgroup-addon p-1">
+                        <img class="flag__icon" src="@/assets/img/flag_uzb.png" />
+                    </span>
+                    <span class="p-inputgroup-addon text-sm text-medium px-1">
+                        +998
+                    </span>
+                    <InputMask v-model="user.password" mask="999999" placeholder="Telefon raqam" />
+                </div>
+  
           </div>
+         
           <div class="col-12">
             <div class="field-checkbox">
               <Checkbox
@@ -79,7 +91,8 @@
     methods: {
       loginUSer() {
           auth.loginUser({data:this.user}).then((res) =>{
-            console.log(res.data);
+            localStorage.setItem('token', res.data.data.token)
+            this.$router.push('/')
           }).catch((error)=>{
             console.log(error);
           })
