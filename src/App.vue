@@ -1,7 +1,6 @@
 <template>
   <router-view/>
   <Toast position="bottom-right" group="br" />
-  <button @click="showBottomRight" >open</button>
 </template>
 
 <script>
