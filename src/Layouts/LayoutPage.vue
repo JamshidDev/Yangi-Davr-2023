@@ -13,10 +13,10 @@
         </div>
 
         <!-- Layout footer -->
-        <!-- <div class="layout_footer">
-            footer
+        <div class="layout_footer">
+            <span class="text-center text-white text-base font-normal">Yangi Davr ta'lim platformasi</span>
 
-        </div> -->
+        </div>
     </div>
 </template>
 <script>

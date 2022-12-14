@@ -13,6 +13,30 @@ const routes = [
         component: function () {
           return import(/* webpackChunkName: "about" */ '../views/Home/HomePage.vue')
         }
+      },
+      {
+        path: '/lessons/:id',
+        name: 'lessons',
+        component: function () {
+          return import(/* webpackChunkName: "about" */ '../views/Lessons/Lessonpage.vue')
+        },
+        children:[
+          {
+            path: '/lessons/:id/',
+            name: 'lesson-video',
+            component: function () {
+              return import(/* webpackChunkName: "about" */ '../views/Lessons/components/VideoLessons.vue')
+            }
+          },
+          {
+            path: '/lessons/:id/audio',
+            name: 'lesson-audio',
+            component: function () {
+              return import(/* webpackChunkName: "about" */ '../views/Lessons/components/AudioLesson.vue')
+            }
+          },
+        ]
+
       }
     ]
 

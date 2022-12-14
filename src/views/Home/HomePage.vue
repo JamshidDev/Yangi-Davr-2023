@@ -29,7 +29,6 @@ export default {
     methods:{
         get_courseList(){
             CourseService.courseList().then((res) => {
-                console.log(res.data.data);
                 this.courseList = res.data.data;
             })
         }
