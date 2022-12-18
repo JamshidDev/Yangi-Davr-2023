@@ -1,6 +1,6 @@
 <template>
-    <div class="grid" v-show="lessonList.length>0">
-        <div v-for="lesson in lessonList"  :key="lesson.id" class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 p-4">
+    <div class="grid" v-show="!loading" >
+        <div v-show="lessonList.length>0" v-for="lesson in lessonList"  :key="lesson.id" class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 p-4">
             <div class="video_lesson_card p-2 cursor-pointer">
                 <div class="lesson_card_image">
                     <span class="lesson_card_image_overal" :class="[!lesson.free && 'overal_bg_premium']">
@@ -22,16 +22,12 @@
                 </div>
             </div>
         </div>
+        <no-data v-show="lessonList.length == 0"></no-data>
     </div>
     <div class="grid" v-show="loading">
-      <div
-        v-for="item in loaderItems"
-        :key="item"
-        class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 p-4"
-      >
-        <Skeleton width="100%" height="16rem"></Skeleton>
-      </div>
-      <Toast position="bottom-right" group="br" />
+        <div class="col-12">
+      <loading-component></loading-component>
+     </div>
     </div>
     <div class="grid">
 
@@ -42,7 +38,13 @@
 </template>
 <script>
 import LessonService from '@/services/service/LessonService'
+import LoadingComponent from "@/components/Loader/LoadingComponent.vue";
+import NoData from "@/views/NoData/NoData.vue";
 export default {
+    components:{
+        LoadingComponent,
+        NoData
+    },
     props:{
         video_lessons:{
             type:Array,
@@ -71,7 +73,7 @@ export default {
         show_Lesson(id, free){
             if(!free){
                 console.log(free);
-                // this.$router.push("")
+                this.$router.push(`/lessons/show/${id}/AUDIO/${this.$route.params.id}`)
             }else{
                 console.log(this.$toast);
                 this.$toast.add({severity:'warn' , summary:"Ruxsat etilmagan", detail:"Sizda bu video dars uchun ruhsat yo'q", group:'br', life: '4000'});

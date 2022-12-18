@@ -59,18 +59,15 @@
     
   </div>
   <div class="grid" v-show="loading">
-      <div
-        v-for="item in loaderItems"
-        :key="item"
-        class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 p-4"
-      >
-        <Skeleton width="100%" height="16rem"></Skeleton>
-      </div>
+     <div class="col-12">
+      <loading-component></loading-component>
+     </div>
       <Toast position="bottom-right" group="br" />
     </div>
 </template>
 <script>
 import LessonService from "@/services/service/LessonService";
+import LoadingComponent from "@/components/Loader/LoadingComponent.vue";
 import NoData from "@/views/NoData/NoData.vue";
 export default {
   props: {
@@ -81,6 +78,7 @@ export default {
   },
   components:{
     NoData,
+    LoadingComponent,
   },
   data() {
     return {
@@ -105,7 +103,7 @@ export default {
     show_Lesson(id, free) {
       if (!free) {
         console.log(free);
-        // this.$router.push("")
+        this.$router.push(`/lessons/show/${id}/VIDEO/${this.$route.params.id}`)
       } else {
         console.log(this.$toast);
         this.$toast.add({

@@ -1,13 +1,13 @@
 <template>
   <div class="navbar_container">
-    <div class="navbar_logo">
-      <img class="logo_img" src="../assets/img/logo_rd.png" alt="" />
-      <span class="animate-charcter">Yangi davr</span>
+    <div class="navbar_logo cursor-pointer" @click="$router.push('/home')">
+      <img class="logo_img "   src="../assets/img/logo_rd.png" alt="" />
+      <span class="animate-charcter ">Yangi davr</span>
     </div>
     <div class="navbar_items">
       <div class="nav_item">
         <button class="btn_login animate_03 cursor-pointer" @click="goPush()">
-          Kirish
+          Chiqish
         </button>
       </div>
     </div>
@@ -74,6 +74,11 @@ export default {
   animation: textclip 4s linear infinite;
   display: inline-block;
   font-size: 30px;
+}
+@media only screen  and (max-width:600px) {
+  .animate-charcter{
+    display: none !important;
+  }
 }
 
 // @keyframes textclip {

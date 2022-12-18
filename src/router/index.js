@@ -37,7 +37,14 @@ const routes = [
           },
         ]
 
-      }
+      },
+      {
+        path: '/lessons/show/:id/:typelesson/:lesson_id',
+        name: 'lesson-show',
+        component: function () {
+          return import(/* webpackChunkName: "about" */ '../views/Lessons/ShowLesson.vue')
+        }
+      },
     ]
 
   },

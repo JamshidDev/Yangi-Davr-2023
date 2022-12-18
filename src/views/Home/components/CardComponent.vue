@@ -15,6 +15,7 @@
           shadow-2
           border-1 border-300
           overflow-hidden
+          p-2
         "
       >
         <span class="free_title bg-primary p-1" v-show="course.price == 0"
@@ -65,17 +66,17 @@
   </div>
 
   <div class="grid pt-6 xl:px-2 lg:px-2 px-2" v-show="list_data.length==0" >
-    <div
-      v-for="item in itemLoader"
-      :key="item"
-      class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 px-2 pb-4"
-    >
-    <Skeleton width="100%" height="15rem"></Skeleton>
-    </div>
+   <div class="col-12">
+    <loading-component></loading-component>
+   </div>
   </div>
 </template>
 <script>
+import LoadingComponent from '@/components/Loader/LoadingComponent.vue';
 export default {
+  components:{
+    LoadingComponent,
+  },
   props: {
     list_data: {
       type: Array,
@@ -104,6 +105,7 @@ export default {
   width: 100%;
   object-fit: cover;
   transition: all 0.4s ease-in-out;
+  border-radius: 10px;
 }
 .card_container:hover .course_card {
   transform: scale(1.2);

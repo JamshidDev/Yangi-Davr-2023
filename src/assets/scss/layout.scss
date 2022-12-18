@@ -9,12 +9,17 @@
 }
 
 .cs_container{
-    max-width: 1320px !important;
+    max-width: 1440px !important;
     width: 100%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
-    padding: 0px 10px;
+    padding: 0px 0px;
+}
+@media only screen and (max-width: 600px) {
+    .cs_container{
+        padding: 0px 0px;
+    }
 }
 .layout_footer{
     width: 100%;
