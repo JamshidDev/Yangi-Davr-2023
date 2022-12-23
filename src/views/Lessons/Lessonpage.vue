@@ -1,5 +1,5 @@
 <template>
-    <div class="grid">
+    <div class="grid px-3">
         <div class="col-12 mt-4">
             <div class="grid">
                 <div class="col-6">

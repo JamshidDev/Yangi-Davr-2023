@@ -1,5 +1,5 @@
 <template>
-    <div class="grid">
+    <div class="grid px-3">
         <div class="col-12 pt-4">
             <search-component></search-component>
         </div>
