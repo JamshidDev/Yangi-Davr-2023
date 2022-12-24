@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar_container">
+  <div class="navbar_container" v-show="!$route.meta?.isHidden">
     <div class="navbar_logo cursor-pointer" @click="$router.push('/home')">
       <img class="logo_img "   src="../assets/img/logo_rd.png" alt="" />
       <span class="animate-charcter ">Yangi davr</span>
@@ -12,6 +12,14 @@
       </div>
     </div>
   </div>
+  <div class="navbar_container" v-show="$route.meta?.isHidden">
+    <div class="flex justify-content-space-between align-item-center">
+      <div class="back_icon min-full">
+        <i @click="goback()" class="pi pi-arrow-left text-2xl text-white cursor-pointer py-2 px-3"></i>
+      </div>
+
+    </div>
+  </div>
 </template>
 <script>
 export default {
@@ -22,7 +30,12 @@ export default {
     goPush() {
       this.$router.push("/login");
     },
+    goback(){
+      this.$router.go(-1)
+    }
   },
+  created(){
+  }
 };
 </script>
 <style lang="scss">
@@ -75,6 +88,15 @@ export default {
   display: inline-block;
   font-size: 30px;
 }
+.back_icon{
+background-color: transparent;
+transition: all 0.2s linear;
+}
+.back_icon:active{
+background-color: #ecf7fb69;
+transform: scale(0.9);
+}
+
 @media only screen  and (max-width:600px) {
   .animate-charcter{
     display: none !important;

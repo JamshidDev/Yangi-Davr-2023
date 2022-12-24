@@ -26,13 +26,13 @@
     </div>
 
     <!-- card content -->
-    <div class="cs_card_content">
+    <div class="cs_card_content pt-8">
       <div class="col-12 flex justify-content-center">
         <div class="header_icon mb-2">
           <img class="logo_img" src="../../assets/img/logo_rd.png" alt="" />
         </div>
       </div>
-      <div class="grid px-4 lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1 bg-white">
+      <div class="grid px-3 pb-2 pt-3 lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1 bg-white w-full">
         <div class="col-12">
           <h4 class="text-primary my-1 pt-4">RO'YHATDAN O'TISH</h4>
         </div>

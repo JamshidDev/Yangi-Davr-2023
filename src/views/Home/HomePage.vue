@@ -1,5 +1,5 @@
 <template>
-    <div class="grid px-3">
+    <div class="grid px-2">
         <div class="col-12 pt-4">
             <search-component></search-component>
         </div>
@@ -16,6 +16,7 @@
 import SearchComponent from './components/SearchComponent.vue';
 import CardComponent from '@/views/Home/components/CardComponent'
 import CourseService from '@/services/service/CourseService'
+import meService from '@/services/service/meService';
 export default {
     components:{
         SearchComponent,
@@ -31,10 +32,16 @@ export default {
             CourseService.courseList().then((res) => {
                 this.courseList = res.data.data;
             })
+        },
+        get_me(){
+            meService.get_Me().then((res) =>{
+                localStorage.setItem('user_info', JSON.stringify(res.data.data))
+            })
         }
     },
     created(){
-        this.get_courseList()
+        this.get_courseList();
+        this.get_me()
     }
 }
 </script>

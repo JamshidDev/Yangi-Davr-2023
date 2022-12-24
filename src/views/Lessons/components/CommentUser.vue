@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
-    <div class="col-12">
-      <div class="comment_title text-500 text-sm uppercase">
+    <div class="col-12 xl:px-4">
+      <div class="comment_title text-500 text-sm uppercase ">
         Kammentariya chat
       </div>
       <div class="comment_details flex mt-2">
@@ -16,16 +16,18 @@
         <div class="comment_text" style="width: calc(100% - 60px)">
           <Textarea
             class="w-full"
-            v-model="comment_text"
+            v-model.trim="comment_text"
             :autoResize="true"
             rows="1"
             placeholder="Izoh matnini yozing..."
           />
         </div>
         <div class="comment_btn">
-          <Button icon="pi pi-send" class="px-4 ml-2" />
+          <Button icon="pi pi-send" class="px-4 ml-2" :loading="loading" @click="addComment()" />
         </div>
       </div>
+
+
       <div class="comment_container" v-if="commentList.length>0">
         <div class="user_comment p-2 flex mt-2" v-for="comment in commentList" :key="comment.id">
           <div
@@ -47,8 +49,13 @@
           </div>
           <div class="user_comment_content flex flex-column w-full">
             <div class="flex w-full justify-content-between">
-              <span class="font-medium text-blue-400">{{comment.user.login}}</span>
-              <span class="font-medium text-600 text-sm">{{comment.created_at}} </span>
+              <span class="font-medium text-blue-400">{{comment.user.login}} <span style="font-size:10px" class="font-medium text-600 text-sm ml-3">{{comment.created_at}} </span></span>
+              <span class="comment_action">
+                <div class="comment_action_icon" v-show="user_info.id== comment.user.id">
+                  <i class="pi pi-user-edit text-blue-500  text-sm mx-2 cursor-pointer"></i>
+                  <i class="pi pi-trash text-red-500  text-sm mx-2 cursor-pointer"></i>
+                </div>
+              </span>
             </div>
 
             <div class="comment_text text-sm text-left mt-2">
@@ -60,7 +67,7 @@
               <div class="comment_footer_view text-sm font-bold cursor-pointer">
                 Fikrlarni ko'rish <i class="pi pi-reply text-blue-500 ml-2 cursor-pointer"></i>
               </div>
-              <div class="comment_footer_view text-sm font-bold cursor-pointer">
+              <div class="comment_footer_view text-sm font-medium text-blue-500 cursor-pointer">
                 {{comment.replies_count}} ta izoh
               </div>
             </div>
@@ -73,15 +80,12 @@
 <script>
 import CommentService from "@/services/service/CommentService";
 export default {
-    props:{
-        Lesson_ID:{
-            type:String,
-        }
-    },
   data() {
     return {
       commentList: [],
       comment_text: null,
+      loading:false,
+      user_info:JSON.parse(localStorage.getItem('user_info')),
     };
   },
   methods: {
@@ -95,9 +99,25 @@ export default {
           console.log(error);
         });
     },
+    addComment(){
+      if(this.comment_text.length>0){
+        this.loading = true;
+      CommentService.create_Lesson_Comment({data:{
+        lesson_id:this.$route.params.id,
+        text:this.comment_text,
+      }}).then((res) => {
+        console.log(res.data);
+        this.loading = false;
+        this.comment_text = null;
+        this.get_CommentByLessonId(this.$route.params.id);
+      })
+      }
+      
+    }
   },
   created() {
-    this.get_CommentByLessonId(this.Lesson_ID);
+    this.get_CommentByLessonId(this.$route.params.id);
+    console.log(this.user_info);
   },
 };
 </script>

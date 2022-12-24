@@ -1,12 +1,13 @@
 <template>
-  <div class="login_page">
+  <div class="login_page pt-8">
     <div class="cs_card_content">
       <div class="col-12 flex justify-content-center mb-2">
         <div class="header_icon">
           <img class="logo_img" src="../../assets/img/logo_rd.png" alt="" />
         </div>
       </div>
-      <div class="grid px-4 lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1 bg-white">
+
+      <div class="grid px-3 pb-2 pt-3 m-0 lg:shadow-1 xl:lg:shadow-1 md:lg:shadow-1 bg-white w-full">
         <div class="col-12 pt-4">
           <h4 class="text-primary my-1">TIZIMGA KIRISH</h4>
         </div>
@@ -17,7 +18,7 @@
               <i class="pi pi-user"></i>
             </span>
             <InputText
-              placeholder="@Username"
+              placeholder="Username"
               type="email"
               v-model="user.login"
             />
@@ -32,10 +33,10 @@
             <span class="p-inputgroup-addon text-sm text-medium px-1">
               +998
             </span>
-            <InputMask
-              v-model="user.password"
-              mask="999999"
+            <InputText
               placeholder="Telefon raqam"
+              type="text"
+              v-model="user.password"
             />
           </div>
         </div>
@@ -74,7 +75,7 @@
       </div>
     </div>
   </div>
-  <Toast position="bottom-right" group="br" />
+  <Toast position="top-right" group="tr" />
 </template>
   <script>
 import auth from "@/services/service/auth";
@@ -94,21 +95,24 @@ export default {
 
   methods: {
     loginUSer() {
+      this.loader = true;
       auth
         .loginUser({ data: this.user })
         .then((res) => {
           localStorage.setItem("token", res.data.data.token);
           this.$router.push("/");
+          this.loader = false;
         })
         .catch((error) => {
           console.log(error);
           this.$toast.add({
-            severity: "error",
+            severity: "warn",
             summary: "Xatolik",
             detail: "Parol yoki login noto'g'ri!",
-            group: "br",
+            group: 'tr',
             life: "4000",
           });
+          this.loader = false;
         });
       // this.loader = true;
     },

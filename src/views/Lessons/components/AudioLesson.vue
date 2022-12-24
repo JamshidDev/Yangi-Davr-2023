@@ -7,7 +7,7 @@
                         <img v-show="!lesson.free" class="lock_icon" src="../../../assets/img/padlock.png" alt="">
                         <span class="video_duration"> {{lesson.duration? lesson.duration : `-:-`}}</span>
                     </span>
-                    <img :src="lesson.image.url_path" alt="">
+                    <img :src="lesson.image?.url_path" alt="">
                 </div>
                 <div class="lesson_card_details">
                     <div class="lesson_title text-center text-white font-medium text-lg p-2">
