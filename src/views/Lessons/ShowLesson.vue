@@ -170,7 +170,7 @@
         </div> -->
       </div>
     </div>
-    <div class="col-12 xl:col-3 lg:col-3 pt-0 pl-0">
+    <div class="hidden xl:block  lg:block xl:col-3 lg:col-3 pt-0 pl-0">
       <div v-for="lesons in lessonList" :key="lesons.id" class="w-full  px-2 py-2 border-1 border-400 cursor-pointer text-primary hover:bg-primary-500 hover:text-white flex justify-content-between" :class="lesons.id== lesson.id && 'bg-primary-500 text-white'">
         <div class="my-0 font-medium text-left text-base ">{{ lesons.title}}</div>
         <div><span style="font-size:12px" class="test-sm block py-1 px-2"><i style="font-size:12px" class="pi pi-stopwatch mr-1"></i> 4:34</span></div>
