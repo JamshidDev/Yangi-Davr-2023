@@ -123,8 +123,8 @@ export default {
         login: null,
         password: null,
         // promo_code:null,
-        device_id: "wefr",
-        firebase_key: "key",
+        device_id: "web",
+        // firebase_key: null,
       },
     };
   },

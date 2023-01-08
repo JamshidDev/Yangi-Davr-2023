@@ -1,11 +1,31 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+const checkToken = () =>{
+  let tokenTime =  localStorage.getItem('token_date');
+  if(tokenTime){
+    let time = new Date(tokenTime).getTime() - 600000;
+    let now = new Date().getTime();
+    return now>time? false : true;
+  }else{
+    return false
+  }
+}
+const authLogin = (to, from, next) =>{
+  if(checkToken()){
+    next();
+  }else{
+    next('/login');
+  }
+  
+}
+
 const routes = [
   {
     path: "/",
     name: "main",
     component: () => import("../Layouts/LayoutPage.vue"),
     redirect: "/home",
+    beforeEnter: authLogin,
     children: [
       {
         path: "/home",
@@ -95,6 +115,18 @@ const routes = [
           },
         ]
       },
+      {
+        path: "/profile",
+        name: "profile",
+        meta: { isHidden: true },
+        component: function () {
+          return import(
+            /* webpackChunkName: "about" */ "../views/Profile/ProfilePage.vue"
+          );
+        },
+      }
+
+
     ],
   },
   {

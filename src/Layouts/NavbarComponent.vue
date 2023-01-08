@@ -6,9 +6,11 @@
     </div>
     <div class="navbar_items">
       <div class="nav_item">
-        <button class="btn_login animate_03 cursor-pointer" @click="goPush()">
+        <!-- <button class="btn_login animate_03 cursor-pointer" @click="goPush()">
           Chiqish
-        </button>
+        </button> -->
+        <Avatar @click="toggle_profile_menu" image="https://exodim.railway.uz/storage/cadry-photos/d83fad83e045f0e3b00bb9924a9f809a.jpg" class="cursor-pointer" shape="circle" />
+        <Menu  ref="profile_menu" :model="profile_menu" :popup="true" />
       </div>
     </div>
   </div>
@@ -24,15 +26,45 @@
 <script>
 export default {
   data() {
-    return {};
+    return {
+      profile_menu:[
+                {
+                    label: 'Foydalanuvchi',
+                    items: [{
+                        label: 'Kabinet',
+                        icon: 'pi pi-user',
+                        command: () => {
+                          this.goPush('/profile')
+                        }
+                    },
+                    {
+                        label: 'Chiqish',
+                        icon: 'pi pi-power-off',
+                        command: () => {
+                           this.logOut()
+                        }
+                    }
+                ]},
+               
+            ]
+    };
   },
   methods: {
-    goPush() {
-      this.$router.push("/login");
+    goPush(link) {
+      this.$router.push(link);
+    },
+    logOut(){
+      localStorage.removeItem('token');
+      localStorage.removeItem('token_date');
+      this.goPush('/login')
+
     },
     goback(){
       this.$router.go(-1)
-    }
+    },
+    toggle_profile_menu(event) {
+            this.$refs.profile_menu.toggle(event);
+        },
   },
   created(){
   }

@@ -87,8 +87,7 @@ export default {
         login: null,
         password: null,
         //   isRemember: false,
-        device_id: "dg",
-        firebase_key: "web",
+        device_id: "web",
       },
     };
   },
@@ -100,6 +99,8 @@ export default {
         .loginUser({ data: this.user })
         .then((res) => {
           localStorage.setItem("token", res.data.data.token);
+          localStorage.setItem("token_date", res.data.data.expired_at);
+
           this.$router.push("/");
           this.loader = false;
         })
