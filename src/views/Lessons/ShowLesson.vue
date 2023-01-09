@@ -1,6 +1,6 @@
 <template>
   <div class="grid" v-if="lesson">
-    <div class="col-12 pb-0">
+    <!-- <div class="col-12 pb-0">
       <p
         class="
           my-0
@@ -20,7 +20,7 @@
         (<span class="text-sm font-normal mx-1">{{ lesson.title }}</span
         >)
       </p>
-    </div>
+    </div> -->
     <div class="col-12 xl:col-9 lg:col-9">
       <div class="grid pt-0">
         <div class="col-12 lg:col-12 py-0">
@@ -171,9 +171,34 @@
       </div>
     </div>
     <div class="hidden xl:block  lg:block xl:col-3 lg:col-3 pt-0 pl-0">
-      <div v-for="lesons in lessonList" :key="lesons.id" class="w-full  px-2 py-2 border-1 border-400 cursor-pointer text-primary hover:bg-primary-500 hover:text-white flex justify-content-between" :class="lesons.id== lesson.id && 'bg-primary-500 text-white'">
-        <div class="my-0 font-medium text-left text-base ">{{ lesons.title}}</div>
-        <div><span style="font-size:12px" class="test-sm block py-1 px-2"><i style="font-size:12px" class="pi pi-stopwatch mr-1"></i> 4:34</span></div>
+      <div class="card border-400 border-round-lg border-1 p-2 mt-3">
+        <h4 class=" text-blue-600 my-0 flex align-items-center gap-2"> 
+          
+          <img
+          style="width:30px; height:30px"
+            v-lazy="imgiocn"
+            alt="video lesson picture"
+          /> Video dars</h4>
+        <h4 class="text-left font-medium mt-1 mb-1 pl-2"> {{ lesson.title}} </h4>
+        <div class="flex justify-content-between">
+          <div class="flex gap-2 text-sm text-teal-500 align-items-center">
+            <i class="pi pi-eye "></i> <span>{{ lesson.views}}</span>
+          </div>
+          <div class="flex gap-2 text-sm text-teal-500 align-items-center">
+            <i class="pi pi-clock "></i> <span>{{ lesson.duration}}</span>
+          </div>
+        </div>
+
+        <div class="flex justify-content-center gap-3 my-2">
+          <div class="cursor-pointer flex align-items-center ">
+            <i class="pi pi-thumbs-up text-2xl mr-2"></i> <span class="text-sm text-300">{{ lesson.likes}}</span>
+          </div>
+          <div class="cursor-pointer flex align-items-center">
+            <i class="pi pi-thumbs-down text-2xl mr-2"></i> <span class="text-sm text-300">{{ lesson.dislikes}}</span>
+          </div>
+        </div>
+
+
       </div>
     </div>
   </div>
@@ -184,6 +209,7 @@
   </div>
 </template>
 <script>
+import imgiocn from '../../assets/img/play.png'
 import LessonService from "@/services/service/LessonService";
 import CommentUser from "@/views/Lessons/components/CommentUser";
 import LoadingComponent from "@/components/Loader/LoadingComponent.vue";
@@ -194,6 +220,7 @@ export default {
   },
   data() {
     return {
+      imgiocn,
       lesson: null,
       tabIndex: 0,
       lessonList: [],
