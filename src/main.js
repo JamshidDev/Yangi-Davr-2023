@@ -10,7 +10,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import PrimeVue from 'primevue/config';
-import Maska from 'maska'
+import Maska from 'maska';
+import VueLazyLoad from 'vue3-lazyload'
 
 
 import Dialog from 'primevue/dialog';
@@ -84,6 +85,8 @@ app.use(ToastService);
 app.use(store)
 app.use(router)
 app.use(Maska)
+app.use(VueLazyLoad)
+
 
 
 // app.directive('ripple', Ripple);

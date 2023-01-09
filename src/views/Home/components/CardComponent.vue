@@ -6,20 +6,22 @@
       class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 px-3 pb-4"
     >
       <div
+      @click="goPush(course.id)"
         class="
           card_container
           cursor-pointer
           relative
           w-full
-          shadow-2
+          shadow-1
           border-1 border-300
+          border-round-sm
           overflow-hidden
           p-0
         "
       >
         <div class="card_image w-full relative">
-          <span class="card_overal absolute"></span>
-          <img class="course_card" :src="'https://mohirdev.uz/wp-content/uploads/Javascript-toliq-kursi-540x330.jpg'" alt="" />
+          <span class="card_overal absolute" ></span>
+          <img class="course_card" v-lazy="`https://mohirdev.uz/wp-content/uploads/Javascript-toliq-kursi-540x330.jpg`"  alt="" />
         </div>
         <div class="card_body px-2 pb-4">
         <div class="w-full pt-2">
@@ -31,7 +33,7 @@
             <Chip :label="course.price.toString()+' so\'m'" class="text-sm text-blue-400 bg-blue-100" />
           </div>
           <div class="col-6 flex justify-content-end pr-4">
-           <i @click="goPush(course.id)" class="pi pi-arrow-right text-2xl text-yellow-600"></i>
+           <i class="pi pi-arrow-right text-2xl text-yellow-600"></i>
           </div>
 
         </div>
@@ -85,7 +87,7 @@ export default {
 //   transform: scale(1.2);
 // }
 .card_container:hover .card_overal {
- background-color: rgba(97, 6, 138, 0.924);
+ background-color: rgba(96, 6, 138, 0.454);
 }
 .card_image{
   max-height: 250px !important;

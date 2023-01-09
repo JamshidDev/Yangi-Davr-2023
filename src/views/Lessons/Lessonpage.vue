@@ -2,11 +2,12 @@
     <div class="grid px-3">
         <div class="col-12 mt-4">
             <div class="grid">
-                <div class="col-6">
-                    <Button @click="goPush('lesson-video')" icon="pi pi-video" label="Video darslar" class=" p-button-primary w-full" />
-                </div>
-                <div class="col-6">
-                    <Button @click="goPush('lesson-audio')"  icon="pi pi-video" label="Audio darslar" class=" p-button-outline p-button-secondary w-full" />
+                <div class="col-12 p-0">
+                    <div class="control_header cursor-pointer">
+                        <div class="header_btn animate_03" @click="goPush('lesson-video')" :class="[this.$route.name == 'lesson-video' && 'active_btn']">Video darslar</div>
+                        <div class="header_btn  animate_03" @click="goPush('lesson-audio')" :class="[this.$route.name == 'lesson-audio' && 'active_btn']"> Audio darslar</div>
+
+                    </div>
                 </div>
             </div>
         </div>
@@ -34,6 +35,33 @@ export default {
     }
 }
 </script>
-<style lang="">
-    
+<style lang="scss" scoped>
+    .control_header{
+        width: 100%;
+        background-color: #EEF2F6;
+        border-radius: 30px;
+        padding: 6px 30px;
+        display: flex;
+        justify-content: space-between;
+         &> .header_btn{
+            width: calc(50% - 20px);
+            padding: 6px 0px;
+            font-weight: 600;
+            font-size: 14px;
+            &:hover{
+                background-color: #FFFFFF;
+            border-radius: 30px;
+            color: #883cae;
+            }
+            &:active{
+                transform: scale(0.9);
+            }
+         }
+         &> .active_btn{
+            background-color: #FFFFFF;
+            border-radius: 30px;
+            color: #883cae;
+         }
+
+    }
 </style>

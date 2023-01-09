@@ -4,71 +4,67 @@
       v-for="lesson in lessonList"
       v-show="lessonList.length > 0"
       :key="lesson.id"
-      class="col-12 xl:col-4 lg:col-4 md:col-6 sm:col-12 p-4"
+      class="col-12"
     >
-      <div class="video_lesson_card p-2 cursor-pointer">
-        <div class="lesson_card_image">
-          <span
-            class="lesson_card_image_overal"
-            :class="[!lesson.free && 'overal_bg_premium']"
-          >
-            <img
-              v-show="!lesson.free"
-              class="lock_icon"
-              src="../../../assets/img/padlock.png"
-              alt=""
-            />
-            <span class="video_duration">
-              {{ lesson.duration ? lesson.duration : `-:-` }}</span
-            >
-          </span>
-          <img :src="lesson.image.url_path" alt="" />
+      <div
+        @click="show_Lesson(lesson.id, lesson.free)"
+        class="
+          video_lesson_card
+          p-2
+          flex
+          gap-2
+          cursor-pointer
+          border-1 border-round-sm border-300
+        "
+      >
+        <div class="lesson_card_image relative">
+          <img
+            v-lazy="imgiocn"
+            alt="video lesson picture"
+          />
         </div>
-        <div class="lesson_card_details">
-          <div
-            class="lesson_title text-center text-white font-medium text-lg p-2"
-          >
+        <div class="flex justify-content-between align-items-center w-full">
+          <div class="lesson_title font-semibold">
             {{ lesson.title }}
           </div>
-          <div class="grid px-2">
-            <div class="col-6 flex justify-content-start">
-              <img
-                @click="show_Lesson(lesson.id, !lesson.free)"
-                class="play_icon"
-                src="../../../assets/img/play.png"
-                alt=""
-              />
+          <div class="lesson_info flex gap-1">
+            <div
+              v-if="lesson.free"
+              class="info_time flex gap-1 align-items-center mr-2"
+            >
+              <Chip label="Bepul" class="text-sm text-teal-400 bg-teal-100" />
             </div>
             <div
-              class="
-                col-6
-                text-sm text-white
-                flex
-                justify-content-end
-                align-items-center
-              "
+              v-if="!lesson.free"
+              class="info_time flex gap-1 align-items-center mr-2"
             >
-              <i class="pi pi-eye text-sm pr-2"></i> {{ lesson.views }}
+              <Chip
+                label="Pullik"
+                class="text-sm text-yellow-400 bg-yellow-50"
+              />
+            </div>
+            <div class="info_time flex gap-1 align-items-center">
+              <i class="pi pi-clock text-sm"> </i>
+              <span class="text-sm">{{ lesson.duration || "-:-" }}</span>
             </div>
           </div>
         </div>
       </div>
     </div>
     <no-data v-show="lessonList.length == 0"></no-data>
-    
-    
   </div>
   <div class="grid" v-show="loading">
-     <div class="col-12">
+    <div class="col-12">
       <loading-component></loading-component>
-     </div>
-      <Toast position="bottom-right" group="br" />
     </div>
+    <Toast position="bottom-right" group="br" />
+  </div>
 </template>
 <script>
 import LessonService from "@/services/service/LessonService";
 import LoadingComponent from "@/components/Loader/LoadingComponent.vue";
 import NoData from "@/views/NoData/NoData.vue";
+import imgiocn from '../../../assets/img/play.png'
 export default {
   props: {
     video_lessons: {
@@ -76,12 +72,12 @@ export default {
       default: [],
     },
   },
-  components:{
+  components: {
     NoData,
     LoadingComponent,
   },
   data() {
-    return {
+    return {imgiocn,
       params: {
         course_id: null,
         type: "VIDEO",
@@ -95,17 +91,14 @@ export default {
     get_Lessons(loader) {
       this.loading = loader;
       LessonService.LessonList(this.params).then((res) => {
-        console.log(res.data.data);
         this.lessonList = res.data.data;
         this.loading = false;
       });
     },
     show_Lesson(id, free) {
-      if (!free) {
-        console.log(free);
-        this.$router.push(`/lessons/show/${id}/VIDEO/${this.$route.params.id}`)
+      if (free) {
+        this.$router.push(`/lessons/show/${id}/VIDEO/${this.$route.params.id}`);
       } else {
-        console.log(this.$toast);
         this.$toast.add({
           severity: "warn",
           summary: "Ruxsat etilmagan",
@@ -139,61 +132,18 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.video_lesson_card {
-  background-color: #883cae;
-}
 .lesson_card_image {
-  width: 100%;
-  min-height: 220px;
-  max-height: 220px;
-  position: relative;
+  min-width: 45px;
+  height: 40px;
+
   overflow: hidden;
   border-radius: 6px;
   & > img {
-    width: 100%;
-    height: 100% !important;
-    object-fit: contain;
-  }
-  .lesson_card_image_overal {
-    position: absolute;
-    top: 0px;
-    left: 0px;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: rgba(8, 8, 8, 0.173);
-    .lock_icon {
-      width: 120px;
-      height: 120px;
-    }
-    .video_duration {
-      position: absolute;
-      bottom: 10px;
-      right: 15px;
-      font-size: 14px;
-      padding: 4px 12px;
-      color: #fff;
-      border-radius: 4px;
-      background-color: rgba(8, 8, 8, 0.633) !important;
-    }
-  }
-  .overal_bg_premium {
-    background-color: rgba(8, 8, 8, 0.563) !important;
+    display: block;
+    width: 40px;
+    height: 40px;
   }
 }
-.play_icon {
-  position: relative;
-  left: 10px;
-  bottom: 10px;
-  width: 30px;
-  height: 30px;
-  transform: scale(1.5);
-  transition: all 0.2s ease-in;
-}
-.play_icon:hover {
-  transform: scale(1);
-  transform: rotate(45deg);
-}
+
+
 </style>

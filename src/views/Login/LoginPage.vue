@@ -87,7 +87,8 @@ export default {
         login: null,
         password: null,
         //   isRemember: false,
-        device_id: "web",
+        device_id: "dg",
+        firebase_key: "key",
       },
     };
   },
